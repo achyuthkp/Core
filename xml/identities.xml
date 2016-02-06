@@ -1,47 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- The whole file is called a "Document" --><!-- "identities" is the Root Element --><identities>
 	<!-- identity is an element, "first child" of identities -->
-	<identity>
-		<property name="displayName">Thomas</property>
-		<property name="email">tbr@tbr.com</property>
-		<property name="guid">123456789</property>
-		<property name="birthDate">19/06/1998</property>
-	</identity>
 	
-	<!-- this identity has two "siblings" the previous and the next identities -->
-	<identity>
-		<property name="displayName">Clément</property>
-		<property name="email">cle@tbr.com</property>
-		<property name="guid">987654123</property>
-		<property name="birthDate">19/06/2008</property>
-	</identity>
 	
-	<!-- this is the "last child" of "identities" -->
-	<identity>
-		<!-- this is defining the properties of one identity -->
-		<!-- the name is defining the property name and the -->
-		<!-- value is defined in the "Text Content" -->
-		<property name="displayName">Quentin</property>
-		<property name="email">quen@tbr.com</property>
-		<property name="guid">987456123</property>
-		<property name="birthDate">19/06/1988</property>
-	</identity>
 <identity>
-    <property name="displayName">Ach</property>
-    <property name="email">dee@ee.com</property>
-    <property name="guid">32947</property>
-    <property name="birthDate">12/01/2010</property>
+    <property name="displayName">Achyuth</property>
+    <property name="email">achyuthkp94@gmail.com</property>
+    <property name="guid">220394</property>
+    <property name="birthDate">22/01/1994</property>
+  </identity>
+  <identity>
+    <property name="displayName">Achu</property>
+    <property name="email">achyuth@gmail.com</property>
+    <property name="guid">200101</property>
+    <property name="birthDate">22/01/1993</property>
   </identity>
 <identity>
-    <property name="displayName">John</property>
-    <property name="email">john@gmail.com</property>
-    <property name="guid">221190</property>
-    <property name="birthDate">22/01/1990</property>
+    <property name="displayName">Armel</property>
+    <property name="email">armel@gmail.com</property>
+    <property name="guid">120189</property>
+    <property name="birthDate">12/01/1989</property>
   </identity>
+
 <identity>
-    <property name="displayName">hello</property>
-    <property name="email">he@llo.com</property>
-    <property name="guid">311291</property>
-    <property name="birthDate">31/01/1991</property>
+    <property name="displayName"/>
+    <property name="email"/>
+    <property name="guid">200390</property>
+    <property name="birthDate">20/01/1990</property>
   </identity>
 </identities>

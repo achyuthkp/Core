@@ -2,10 +2,12 @@ package iamcore.services.dao;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -225,12 +227,14 @@ public class IdentityXmlDAO implements IdentityDAO
 
 
 	@Override
-	public void update(Identity identity) throws IOException 
+	public void update(Identity identity) throws IOException, ParseException 
 	{
 		// TODO Auto-generated method stub
 		NodeList nodes = this.doc.getElementsByTagName("identity");
 		int nodesSize = nodes.getLength();
-
+		Scanner scanner = new Scanner(System.in);
+		
+		
 		// for every found identity
 		Node node = null;
 		boolean flag = false; 
@@ -244,7 +248,6 @@ public class IdentityXmlDAO implements IdentityDAO
 			// "Element" using the instanceof operator
 			if (node instanceof Element) 
 			{
-//				Identity id = readOneIdentityFromXmlElement(node);
 				// cast the node into an Element, as we are sure it is an
 				// instance of Element
 				Element id = (Element) node;
@@ -267,7 +270,7 @@ public class IdentityXmlDAO implements IdentityDAO
 						// we need to store the right value in the right
 						// property so we use a switch-case structure
 						// to handle the 3 cases
-						if(propertyElt.getAttribute("name")=="guid")
+						if(propertyElt.getAttribute("name").equals("guid"))
 						{	String TextContent = propertyElt.getTextContent();
 							if(identity.getUid().equals(TextContent))
 							{
@@ -295,7 +298,7 @@ public class IdentityXmlDAO implements IdentityDAO
 			NodeList properties = id.getElementsByTagName("property");
 			int length = properties.getLength();
 			// declare and initialize several variables on the same line
-		
+			
 			// for every found property
 				for (int j = 0; j < length; j++) 
 				{
@@ -364,6 +367,7 @@ public class IdentityXmlDAO implements IdentityDAO
 				}
 				
 			}
+		scanner.close();
 		}
 	
 
@@ -410,7 +414,7 @@ public class IdentityXmlDAO implements IdentityDAO
 								// we need to store the right value in the right
 								// property so we use a switch-case structure
 								// to handle the 3 cases
-								if(propertyElt.getAttribute("name")=="guid")
+								if(propertyElt.getAttribute("name").equals("guid"))
 								{	String TextContent = propertyElt.getTextContent();
 									if(identity.getUid().equals(TextContent))
 									{

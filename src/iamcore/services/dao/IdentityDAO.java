@@ -1,6 +1,7 @@
 package iamcore.services.dao;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import iamcore.datamodel.Identity;
@@ -17,7 +18,7 @@ public interface IdentityDAO {
 	
 	public void create(Identity identity);
 	
-	public void update(Identity identity) throws IOException;
+	public void update(Identity identity) throws IOException, ParseException;
 	
 	public void delete(Identity identity) throws IOException;
 	
