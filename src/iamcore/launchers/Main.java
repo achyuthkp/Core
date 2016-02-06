@@ -151,6 +151,11 @@ public class Main {
 	}
 private static Identity getIdentityFromInput(Scanner scanner) throws ParseException
 {
+	/**
+	 * This method is used to read the fields of the Identity 
+	 * Parse String dateString into Date birthdate  
+	 * The method then returns the identity
+	 */
 	
 	System.out.println("Enter Name of Identity:");
 	String name = scanner.nextLine();
@@ -164,7 +169,6 @@ private static Identity getIdentityFromInput(Scanner scanner) throws ParseExcept
 	Date birthdate = formatter.parse(dateString);
 	Identity identity = new Identity(name, email, uid, birthdate);
 	System.out.println("Thank you, you have input those information:");
-	//System.out.println(identity);
 	return identity;
 }
 }

@@ -23,8 +23,8 @@
   </identity>
 
 <identity>
-    <property name="displayName"/>
-    <property name="email"/>
+    <property name="displayName"/>John</property>
+    <property name="email"/>john@gmail.com</property>
     <property name="guid">200390</property>
     <property name="birthDate">20/01/1990</property>
   </identity>

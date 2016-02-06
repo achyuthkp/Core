@@ -20,6 +20,7 @@ public class Identity {
 	 * @param displayName
 	 * @param emailAddress
 	 * @param uid
+	 * @param birthDate
 	 */
 	public Identity(String displayName, String emailAddress, String uid, Date birthdate) {
 		this.displayName = displayName;
@@ -43,7 +44,7 @@ public class Identity {
 
 
 	/**
-	 * @param displayName the displayName to set
+	 * @param displayName to set the displayName
 	 */
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
@@ -61,7 +62,7 @@ public class Identity {
 
 
 	/**
-	 * @param emailAddress the emailAddress to set
+	 * @param emailAddress to set emailAddress
 	 */
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
@@ -88,13 +89,17 @@ public class Identity {
 
 
 
-
+	/**
+	 * @return the birthDate
+	 */
 	public Date getBirthDate() {
 		return this.birthDate;
 	}
 
 
-
+	/**
+	 * @param birthdate to set birthDate
+	 */
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}

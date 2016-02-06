@@ -8,10 +8,9 @@ import iamcore.datamodel.Identity;
 
 
 /**
- * TODO document
- * 
- *
- */
+ * The DAO for the Identity
+ * Create , Update, Search and Delete methods
+ * */
 public interface IdentityDAO {
 
 	public List<Identity> search(Identity criteria);
