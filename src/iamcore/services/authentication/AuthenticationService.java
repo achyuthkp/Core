@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.services.authentication;
+package iamcore.services.authentication;
 
 public class AuthenticationService {
 

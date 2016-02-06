@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.tbr.iamcore.services.dao;
+package iamcore.services.dao;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.tests.services.match.Matcher;
 import fr.tbr.iamcore.tests.services.match.impl.StartsWithIdentityMatchStrategy;
+import iamcore.datamodel.Identity;
 
 /**
  * @author tbrou

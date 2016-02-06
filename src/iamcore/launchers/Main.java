@@ -1,11 +1,11 @@
-package fr.tbr.iamcore.launchers;
+package iamcore.launchers;
 
 import java.util.Scanner;
 
-import fr.tbr.iamcore.datamodel.Identity;
-import fr.tbr.iamcore.services.authentication.AuthenticationService;
-import fr.tbr.iamcore.services.dao.IdentityDAO;
-import fr.tbr.iamcore.services.dao.IdentityXmlDAO;
+import iamcore.datamodel.Identity;
+import iamcore.services.authentication.AuthenticationService;
+import iamcore.services.dao.IdentityDAO;
+import iamcore.services.dao.IdentityXmlDAO;
 
 public class Main {
 

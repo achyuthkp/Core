@@ -6,8 +6,8 @@ package fr.tbr.iamcore.tests;
 import java.io.IOException;
 import java.util.List;
 
-import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.tests.services.dao.IdentityFileDAO;
+import iamcore.datamodel.Identity;
 
 
 /**

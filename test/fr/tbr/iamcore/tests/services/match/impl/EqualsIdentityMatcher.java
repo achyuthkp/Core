@@ -1,7 +1,7 @@
 package fr.tbr.iamcore.tests.services.match.impl;
 
-import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.tests.services.match.Matcher;
+import iamcore.datamodel.Identity;
 
 public class EqualsIdentityMatcher implements Matcher<Identity> {
 

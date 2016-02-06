@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.datamodel;
+package iamcore.datamodel;
 
 import java.util.Date;
 

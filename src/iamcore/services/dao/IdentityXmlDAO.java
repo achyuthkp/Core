@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.services.dao;
+package iamcore.services.dao;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -20,9 +20,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import fr.tbr.iamcore.datamodel.Identity;
 import fr.tbr.iamcore.tests.services.match.Matcher;
 import fr.tbr.iamcore.tests.services.match.impl.StartsWithIdentityMatchStrategy;
+import iamcore.datamodel.Identity;
 
 public class IdentityXmlDAO implements IdentityDAO 
 {

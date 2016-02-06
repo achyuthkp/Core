@@ -6,9 +6,9 @@ package fr.tbr.iamcore.tests.services.dao.file;
 import java.io.IOException;
 import java.util.List;
 
-import fr.tbr.iamcore.datamodel.Identity;
-import fr.tbr.iamcore.services.dao.IdentityDAO;
-import fr.tbr.iamcore.services.dao.IdentityFileDAO;
+import iamcore.datamodel.Identity;
+import iamcore.services.dao.IdentityDAO;
+import iamcore.services.dao.IdentityFileDAO;
 
 
 /**

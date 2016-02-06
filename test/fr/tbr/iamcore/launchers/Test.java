@@ -2,7 +2,7 @@ package fr.tbr.iamcore.launchers;
 
 import java.util.Scanner;
 
-import fr.tbr.iamcore.datamodel.Identity;
+import iamcore.datamodel.Identity;
 
 
 public class Test {

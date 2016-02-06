@@ -1,14 +1,14 @@
-package fr.tbr.iamcore.services.dao;
+package iamcore.services.dao;
 
 import java.io.IOException;
 import java.util.List;
 
-import fr.tbr.iamcore.datamodel.Identity;
+import iamcore.datamodel.Identity;
 
 
 /**
  * TODO document
- * @author tbrou
+ * 
  *
  */
 public interface IdentityDAO {

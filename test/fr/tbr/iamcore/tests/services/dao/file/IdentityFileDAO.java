@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.tbr.iamcore.datamodel.Identity;
-import fr.tbr.iamcore.services.dao.IdentityDAO;
 import fr.tbr.iamcore.tests.services.match.Matcher;
 import fr.tbr.iamcore.tests.services.match.impl.StartsWithIdentityMatchStrategy;
+import iamcore.datamodel.Identity;
+import iamcore.services.dao.IdentityDAO;
 
 /**
  * @author tbrou
