@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * This is the representation for the Identity, the main datamodel to manage in IamCore
- * @author tbrou
+ * @author 
  *
  */
 public class Identity {
@@ -21,10 +21,11 @@ public class Identity {
 	 * @param emailAddress
 	 * @param uid
 	 */
-	public Identity(String displayName, String emailAddress, String uid) {
+	public Identity(String displayName, String emailAddress, String uid, Date birthdate) {
 		this.displayName = displayName;
 		this.emailAddress = emailAddress;
 		this.uid = uid;
+		this.birthDate = birthdate;
 	}
 
 

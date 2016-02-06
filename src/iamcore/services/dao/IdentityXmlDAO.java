@@ -9,20 +9,23 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import iamcore.datamodel.Identity;
-import proj.iamcore.tests.services.match.Matcher;
-import proj.iamcore.tests.services.match.impl.StartsWithIdentityMatchStrategy;
+import iamcore.services.match.Matcher;
+import iamcore.services.match.impl.StartsWithIdentityMatchStrategy;
 
 public class IdentityXmlDAO implements IdentityDAO 
 {
@@ -156,58 +159,70 @@ public class IdentityXmlDAO implements IdentityDAO
 				}
 			}
 		}
-		Identity currentIdentity = new Identity(displayName, email, guid);
-		currentIdentity.setBirthDate(birthDate);
+		Identity currentIdentity = new Identity(displayName, email, guid, birthDate);
 		return currentIdentity;
 	}
 
 	@Override
 	public void create(Identity identity)
 	{
-		try{
 		// TODO Auto-generated method stub
-		Element e = null;
-
-		Element rootElement = doc.createElement("identities");
-		doc.appendChild(rootElement);
-
-		// staff elements
-		Element id = doc.createElement("identity");
-		rootElement.appendChild(id);
-
-		// create data elements and place them under root
-        e = doc.createElement("role1");
-        e.appendChild(doc.createTextNode(displayName));
-        rootElement.appendChild(e);
-
-        e = doc.createElement("role2");
-        e.appendChild(doc.createTextNode(guid));
-        rootElement.appendChild(e);
-
-        e = doc.createElement("role3");
-        e.appendChild(doc.createTextNode(emailid));
-        rootElement.appendChild(e);
-
-        e = doc.createElement("role4");
-        e.appendChild(doc.createTextNode(birthdate));
-        rootElement.appendChild(e);
-
-        doc.appendChild(rootElement);
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		DOMSource source = new DOMSource(doc);
-		StreamResult result = new StreamResult("identities.xml");
-		// Output to console for testing
-		// StreamResult result = new StreamResult(System.out);
-		transformer.transform(source, result);
-		System.out.println("File saved!");
 		
-
-	  }  catch (TransformerException tfe) {
-		tfe.printStackTrace();
-	  }
-
+		 Element rootIdentity =(Element)doc.createElement("identity"); 
+		 doc.getDocumentElement().appendChild(rootIdentity);
+		 
+		 Element propertyElm = doc.createElement("property");
+		 Attr Attrbute = doc.createAttribute("name");
+		 Attrbute.setValue("displayName");
+		 propertyElm.setAttributeNode(Attrbute);
+		 propertyElm.setTextContent(identity.getDisplayName());
+		 rootIdentity.appendChild(propertyElm);
+		 
+		 propertyElm = doc.createElement("property");
+		 Attrbute = doc.createAttribute("name");
+		 Attrbute.setValue("email");
+		 propertyElm.setAttributeNode(Attrbute);		 
+		 propertyElm.setTextContent(identity.getEmailAddress());
+		 rootIdentity.appendChild(propertyElm);
+		 
+		 propertyElm = doc.createElement("property");
+		 Attrbute = doc.createAttribute("name");
+		 Attrbute.setValue("guid");
+		 propertyElm.setAttributeNode(Attrbute);		 
+		 propertyElm.setTextContent(identity.getUid());
+		 rootIdentity.appendChild(propertyElm);
+		 
+		 propertyElm = doc.createElement("property");
+		 Attrbute = doc.createAttribute("name");
+		 Attrbute.setValue("birthDate");
+		 propertyElm.setAttributeNode(Attrbute);
+		 DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		 propertyElm.setTextContent(df.format(identity.getBirthDate()));
+		 rootIdentity.appendChild(propertyElm);
+        
+		 TransformerFactory transformerFactory = TransformerFactory.newInstance();
+         Transformer transformer=null;
+         try 
+         {
+        	transformer = transformerFactory.newTransformer();
+        	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+         } catch (TransformerConfigurationException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+		DOMSource source = new DOMSource(doc);
+        StreamResult result = new StreamResult("C:\\Users\\Moi Laptop\\git\\Core\\xml\\identities.xml");
+        try {
+			transformer.transform(source, result);
+			}
+        catch (TransformerException e) 
+        {
+				// TODO Auto-generated catch block
+        	e.printStackTrace();
+		}
 	}
+
 
 	@Override
 	public void update(Identity identity) throws IOException 
@@ -272,7 +287,6 @@ public class IdentityXmlDAO implements IdentityDAO
 		}
 		if (flag && node != null) 
 		{
-//			Identity id = readOneIdentityFromXmlElement(node);
 			// cast the node into an Element, as we are sure it is an
 			// instance of Element
 			Element id = (Element) node;
@@ -323,22 +337,29 @@ public class IdentityXmlDAO implements IdentityDAO
 							// so we use the "default" case
 							break;
 						}
-						try 
-						{
-						TransformerFactory transformerFactory = TransformerFactory.newInstance();
-						Transformer transformer = transformerFactory.newTransformer();
-						DOMSource source = new DOMSource(doc);
-						StreamResult result = new StreamResult("identities.xml");
-						// Output to console for testing
-						// StreamResult result = new StreamResult(System.out);
-						transformer.transform(source, result);
-						System.out.println("File saved!");
-						}
-						catch (TransformerException tfe) 
-						{
-						tfe.printStackTrace();
-					  }
-
+							 TransformerFactory transformerFactory = TransformerFactory.newInstance();
+					         Transformer transformer=null;
+					         try 
+					         {
+					        	transformer = transformerFactory.newTransformer();
+					        	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+								transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+					         } catch (TransformerConfigurationException e)
+					         {
+					 			// TODO Auto-generated catch block
+					 			e.printStackTrace();
+					 		 }
+							DOMSource source = new DOMSource(doc);
+					        StreamResult result = new StreamResult("C:\\Users\\Moi Laptop\\git\\Core\\xml\\identities.xml");
+					        try {
+								transformer.transform(source, result);
+								}
+					        catch (TransformerException e) 
+					        {
+									// TODO Auto-generated catch block
+					        	e.printStackTrace();
+							}
+					 
 					}
 				}
 				
@@ -353,7 +374,7 @@ public class IdentityXmlDAO implements IdentityDAO
 				NodeList nodes = this.doc.getElementsByTagName("identity");
 				int nodesSize = nodes.getLength();
 
-				// for every found identit
+				// for every found identity
 				Node node = null;
 				boolean flag = false; 
 				for (int i = 0; i < nodesSize; i++) 
@@ -366,7 +387,7 @@ public class IdentityXmlDAO implements IdentityDAO
 					// "Element" using the instanceof operator
 					if (node instanceof Element) 
 					{
-//						Identity id = readOneIdentityFromXmlElement(node);
+						//Identity id = readOneIdentityFromXmlElement(node);
 						// cast the node into an Element, as we are sure it is an
 						// instance of Element
 						Element id = (Element) node;
@@ -410,6 +431,28 @@ public class IdentityXmlDAO implements IdentityDAO
 				if (flag && node != null)
 				{
 					this.doc.getDocumentElement().removeChild(node);
+					
+				}
+				 TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		         Transformer transformer=null;
+		         try 
+		         {
+		        	transformer = transformerFactory.newTransformer();
+		        	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+					transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+		         } catch (TransformerConfigurationException e) {
+		 			// TODO Auto-generated catch block
+		 			e.printStackTrace();
+		 		}
+				DOMSource source = new DOMSource(doc);
+		        StreamResult result = new StreamResult("C:\\Users\\Moi Laptop\\git\\Core\\xml\\identities.xml");
+		        try {
+					transformer.transform(source, result);
+					}
+		        catch (TransformerException e) 
+		        {
+						// TODO Auto-generated catch block
+		        	e.printStackTrace();
 				}
 	}
 

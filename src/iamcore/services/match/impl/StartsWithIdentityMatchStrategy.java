@@ -1,7 +1,7 @@
-package proj.iamcore.tests.services.match.impl;
+package iamcore.services.match.impl;
 
 import iamcore.datamodel.Identity;
-import proj.iamcore.tests.services.match.Matcher;
+import iamcore.services.match.Matcher;
 
 public class StartsWithIdentityMatchStrategy implements Matcher<Identity> {
 

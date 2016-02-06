@@ -1,4 +1,4 @@
-package proj.iamcore.tests.services.match;
+package iamcore.services.match;
 
 public interface Matcher<T> {
 	
