@@ -50,7 +50,7 @@ public class IdentityXmlDAO implements IdentityDAO
 				db = dbf.newDocumentBuilder();
 			}
 			// Document representation in Java
-			this.doc = db.parse("C:\\Work\\Dev\\Git\\Epita\\Fundamentals\\2015s2f2\\IamCore\\xml\\identities.xml");
+			this.doc = db.parse("C:\\Users\\Moi Laptop\\git\\Core\\xml\\identities.xml");
 		} catch (Exception e) 
 		{
 			e.printStackTrace();

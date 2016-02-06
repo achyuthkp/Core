@@ -29,14 +29,16 @@ public class Main {
 		if (authenticated) {
 
 			// Menu
-			System.out.println("You've been granted to use the application");
+			System.out.println("You've been granted access to use the application");
 			String answer = null;
 			while (!"e".equals(answer)) {
 				System.out.println("choose an action ");
 				System.out.println("- Create (c)");
 				System.out.println("- Search (s)");
+				System.out.println("- Update (u)");
+				System.out.println("- Delete (d)");
 				System.out.println("- Exit (e)");
-				System.out.println("What's your choice (c|s|e)?");
+				System.out.println("What's your choice (c|s|e|u|d)?");
 				answer = scanner.nextLine();
 				switch (answer) {
 				case "c":
@@ -54,15 +56,20 @@ public class Main {
 				case "s":
 					// Search
 					break;
-				default:
+				
+				case "u":
+					//Update
+					break;
+				
+				case "d":
+					//Delete
+					break;
+					
+				default: 
 					break;
 				}
 
 			}
-			// Update
-
-			// Delete
-
 			// Finish
 		}
 		System.out.println("End of the program");
