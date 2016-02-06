@@ -28,7 +28,10 @@ public class Identity {
 		this.birthDate = birthdate;
 	}
 
-
+	public Identity()
+	{
+		
+	}
 
 	/**
 	 * @return the displayName
