@@ -36,13 +36,16 @@ public class IdentityXmlDAO implements IdentityDAO
 
 	Document doc;
 
-	// Intermediate instance to build a document builder (the factory to
-	// parse DOM documents)
+	/** Intermediate instance to build a document builder (the factory to
+	 *  parse DOM documents)
+	 */
 	private static DocumentBuilderFactory dbf ;
-	// DOM Document builder, to get an empty document or parse it from
-	// an xml source
-	private static DocumentBuilder db ;
+	/**
+	 *  DOM Document builder, to get an empty document or parse it from
+	 *  An xml source
+	 */
 	
+	private static DocumentBuilder db ;
 	
 	public IdentityXmlDAO() 
 	{
@@ -54,7 +57,14 @@ public class IdentityXmlDAO implements IdentityDAO
 				dbf = DocumentBuilderFactory.newInstance();
 				db = dbf.newDocumentBuilder();
 			}
-			// Document representation in Java
+			/**
+			 *  checks if db value is equivalent to null
+			 *  if true, then an instance for DocumentBuilderFactory is created
+			 *  newDocumentBuilder() is called and returned to db
+			 *  
+			 *  Document representation in Java and parsed from the XML path
+			 *    
+			 */
 			this.doc = db.parse("C:\\Users\\Moi Laptop\\git\\Core\\xml\\identities.xml");
 		} catch (Exception e) 
 		{
@@ -66,25 +76,32 @@ public class IdentityXmlDAO implements IdentityDAO
 	
 	private List<Identity> searchInternal(Identity criteria, Matcher<Identity> matcher) 
 	{
+		/**
+		 * results of type List<Identity> is created
+		 * gets all the nodes called "identity" (see xml/identities.xml in the project)
+		 * 
+		 */
 		List<Identity> results = new ArrayList<Identity>();
-		// gets all the nodes called "identity" (see xml/identities.xml in
-		// the project)
 		NodeList nodes = this.doc.getElementsByTagName("identity");
 		int nodesSize = nodes.getLength();
-
-		// for every found identity
+		/**
+		 *  for every found identity
+		 *   test if the found node is really an Element
+		 *   in the DOM implementation a Node can represent an Element, an
+		 *   Attribute or a TextContent
+		 *   so we have to be sure that the found node is of type
+		 *   "Element" using the instanceof operator
+		 */
 		for (int i = 0; i < nodesSize; i++)
 		{
 			Node node = nodes.item(i);
-			// test if the found node is really an Element
-			// in the DOM implementation a Node can represent an Element, an
-			// Attribute or a TextContent
-			// so we have to be sure that the found node is of type
-			// "Element" using the instanceof operator
+			
 			if (node instanceof Element) 
 			{
 				Identity identity = readOneIdentityFromXmlElement(node);
-				// usage of Matcher to filter only the wished identities.
+				/**
+				 *  usage of Matcher to filter only the wished identities.
+				 */
 				if (matcher == null || matcher.match(criteria, identity))
 				{
 					results.add(identity);
@@ -93,6 +110,11 @@ public class IdentityXmlDAO implements IdentityDAO
 		}
 		return results;
 	}
+	/**
+	 * 
+	 * @param criteria
+	 * calls/returns searchInternal method
+	 */
 	
 	@Override
 	public List<Identity> search(Identity criteria)
@@ -100,36 +122,32 @@ public class IdentityXmlDAO implements IdentityDAO
 		return searchInternal(criteria, this.matcher);
 	}
 	
-	public List<Identity> readAll()
-	{
-		return searchInternal(null, null);
-		
-	}
+	
 	private Identity readOneIdentityFromXmlElement(Node node) 
 	{
-		// cast the node into an Element, as we are sure it is an
-		// instance of Element
+		/**
+		 *  Cast the node into an Element, as it is an instance of Element
+		 *  Get the properties for the encountered identity
+		 *  Declare and initialize several variables on the same line
+		 */
 		Element identity = (Element) node;
-
-		// get the properties for the encountered identity
 		NodeList properties = identity.getElementsByTagName("property");
 		int length = properties.getLength();
-
-		// declare and initialize several variables on the same line
 		String displayName = "", guid = "", email = "";
 		Date birthDate = null;
-		// for every found property
+		/**
+		 *  for every found property
+		 *  Checks that the found property is really an element
+		 *  To store the right value in the right property,
+		 *  a switch-case structure is used to handle the 4 cases			
+		 */
 		for (int j = 0; j < length; j++) 
 		{
 			Node item = properties.item(j);
-			// we check that the found property is really an element
-			// (see the explanation above)
 			if (item instanceof Element)
 			{
 				Element propertyElt = (Element) item;
-				// we need to store the right value in the right
-				// property so we use a switch-case structure
-				// to handle the 3 cases
+				
 				String textContent = propertyElt.getTextContent();
 				switch (propertyElt.getAttribute("name")) 
 				{
@@ -142,15 +160,14 @@ public class IdentityXmlDAO implements IdentityDAO
 				case "email":
 					email = textContent;
 					break;
-
 				case "birthDate":
 					try 
 					{
-						birthDate = new SimpleDateFormat("dd/MM/yyyy").parse(textContent);
+						birthDate = new SimpleDateFormat("dd/mm/yyyy").parse(textContent);
 					} catch (Exception e) 
 					{
 						e.printStackTrace();
-						//TODO finish exception handling
+						//exception handling
 					}
 					break;
 
@@ -161,6 +178,10 @@ public class IdentityXmlDAO implements IdentityDAO
 				}
 			}
 		}
+		/**
+		 * the current Identity is stored into currentIdentity
+		 * and returned back
+		 */
 		Identity currentIdentity = new Identity(displayName, email, guid, birthDate);
 		return currentIdentity;
 	}
@@ -168,8 +189,10 @@ public class IdentityXmlDAO implements IdentityDAO
 	@Override
 	public void create(Identity identity)
 	{
-		// TODO Auto-generated method stub
-		
+		/**
+		 * 
+		 * 
+		 */
 		 Element rootIdentity =(Element)doc.createElement("identity"); 
 		 doc.getDocumentElement().appendChild(rootIdentity);
 		 
@@ -210,7 +233,7 @@ public class IdentityXmlDAO implements IdentityDAO
         	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
          } catch (TransformerConfigurationException e) {
- 			// TODO Auto-generated catch block
+ 			//  catch block
  			e.printStackTrace();
  		}
 		DOMSource source = new DOMSource(doc);
@@ -220,7 +243,7 @@ public class IdentityXmlDAO implements IdentityDAO
 			}
         catch (TransformerException e) 
         {
-				// TODO Auto-generated catch block
+				//  catch block
         	e.printStackTrace();
 		}
 	}
