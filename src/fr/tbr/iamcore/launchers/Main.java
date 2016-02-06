@@ -20,7 +20,7 @@ public class Main {
 		String login = scanner.nextLine();
 		System.out.println("Please enter your password");
 		String password = scanner.nextLine();
-
+		
 		AuthenticationService as = new AuthenticationService();
 		IdentityDAO dao = new IdentityXmlDAO();
 		boolean authenticated = as.authenticate(login, password);
