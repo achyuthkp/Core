@@ -1,0 +1,1 @@
+insert into "TOM"."IDENTITIES" ("DISPLAY_NAME", "EMAIL", "UID", "BIRTHDATE") values('Thomas', 'thomas.broussard@gmail.com', '123456789', '1986-04-09')
