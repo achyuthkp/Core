@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.tests.services.dao.file;
+package proj.iamcore.tests.services.dao.file;
 
 import java.io.File;
 import java.io.IOException;

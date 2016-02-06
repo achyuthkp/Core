@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.tests;
+package proj.iamcore.tests;
 
 import java.io.File;
 import java.io.IOException;

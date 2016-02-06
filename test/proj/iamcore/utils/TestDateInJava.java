@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.utils;
+package proj.iamcore.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

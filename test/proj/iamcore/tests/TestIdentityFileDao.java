@@ -1,14 +1,13 @@
 /**
  * 
  */
-package fr.tbr.iamcore.tests.services.dao.file;
+package proj.iamcore.tests;
 
 import java.io.IOException;
 import java.util.List;
 
 import iamcore.datamodel.Identity;
-import iamcore.services.dao.IdentityDAO;
-import iamcore.services.dao.IdentityFileDAO;
+import proj.iamcore.tests.services.dao.IdentityFileDAO;
 
 
 /**
@@ -16,50 +15,38 @@ import iamcore.services.dao.IdentityFileDAO;
  *
  */
 public class TestIdentityFileDao {
-	
-	private static IdentityDAO dao;
 
 	/**
 	 * @param args
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws Exception {
-		setUp();
+	public static void main(String[] args) throws IOException {
+		
 //		testReadAll();
 //		testSearch();
 		
 		testUpdate();
-		tearDown();
-		
-		
+
 	}
 
-	
-	private static void setUp() throws Exception{
-		dao = new IdentityFileDAO();
-	}
-	
-	private static void tearDown(){
-		IdentityFileDAO identityFileDAO = (IdentityFileDAO) dao;
-		identityFileDAO.close();
-		
-	}
 	private static void testUpdate() throws IOException {
-	
-//		List<Identity> ids = dao.readAll();
-//		System.out.println(ids);
-//		Identity foundIdentity = ids.get(0);
-//		
-//		System.out.println(foundIdentity);
-//		
-//		foundIdentity.setDisplayName("modified from test 2");
-//		
-//		dao.update(foundIdentity);
+		IdentityFileDAO dao = new IdentityFileDAO();
+		List<Identity> ids = dao.readAll();
+		System.out.println(ids);
+		Identity foundIdentity = ids.get(0);
 		
-//		System.out.println(dao.readAll());
+		System.out.println(foundIdentity);
+		
+		foundIdentity.setDisplayName("modified from test 2");
+		
+		dao.update(foundIdentity);
+		
+		System.out.println(dao.readAll());
+		
 		
 	}
 	private static void testSearch() throws IOException {
+		IdentityFileDAO dao = new IdentityFileDAO();
 		dao.create(new Identity("clement", "clem@clem.com", "789"));
 		
 		Identity criteria = new Identity("cle", "clem@", null);
@@ -75,9 +62,10 @@ public class TestIdentityFileDao {
 	}
 
 	private static void testReadAll() throws IOException {
+		IdentityFileDAO dao = new IdentityFileDAO();
 		dao.create(new Identity("thomas", "tbr@tbr.com","456"));
 		
-//		System.out.println(dao.readAll());
+		System.out.println(dao.readAll());
 	}
 
 }

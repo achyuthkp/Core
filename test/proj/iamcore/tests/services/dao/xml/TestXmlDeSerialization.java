@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.tests.services.dao.xml;
+package proj.iamcore.tests.services.dao.xml;
 
 import java.io.IOException;
 

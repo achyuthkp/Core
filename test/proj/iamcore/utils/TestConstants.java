@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.utils;
+package proj.iamcore.utils;
 
 public class TestConstants {
 

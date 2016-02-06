@@ -20,9 +20,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import fr.tbr.iamcore.tests.services.match.Matcher;
-import fr.tbr.iamcore.tests.services.match.impl.StartsWithIdentityMatchStrategy;
 import iamcore.datamodel.Identity;
+import proj.iamcore.tests.services.match.Matcher;
+import proj.iamcore.tests.services.match.impl.StartsWithIdentityMatchStrategy;
 
 public class IdentityXmlDAO implements IdentityDAO 
 {

@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.tests.services.dao.sql;
+package proj.iamcore.tests.services.dao.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

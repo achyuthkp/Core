@@ -1,4 +1,4 @@
-package fr.tbr.iamcore.launchers;
+package proj.iamcore.launchers;
 
 import java.util.Scanner;
 
