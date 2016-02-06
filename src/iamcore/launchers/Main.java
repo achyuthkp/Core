@@ -37,7 +37,8 @@ public class Main {
 			// Menu
 			System.out.println("You've been granted access to use the application");
 			String answer = null;
-			while (!"e".equals(answer)) {
+			String con = "y";
+			while ("y".equals(con)) {
 				System.out.println("Please select an action that you wish to implement : ");
 				System.out.println("- Create (c)");
 				System.out.println("- Search (s)");
@@ -56,17 +57,27 @@ public class Main {
 
 				case "s":
 					//Search
-					Identity id2 = getIdentityFromInput(scanner);
+					System.out.println("Enter Name of Identity:");
+					String name = scanner.nextLine();
+					System.out.println("Enter Email ID of Identity:");
+					String email = scanner.nextLine();
+					Identity id2 = new Identity();
+					id2.setDisplayName(name);
+					id2.setEmailAddress(email);
 					List<Identity> list =  dao.search(id2);
-					for(int i=0;i<list.size();i++)
+					for( Identity ide : list)
 					{
-						 System.out.println("Identity"+i+list.get(i));
-						
+						 System.out.println("Identity details:");
+						 System.out.println("Name:");
+						 System.out.println(ide.getDisplayName());
+						 System.out.println("Email:");
+						 System.out.println(ide.getEmailAddress());
+						 System.out.println("User ID:");
+						 System.out.println(ide.getUid());
+						 System.out.println("Birth Date:");
+						 System.out.println(ide.getBirthDate());
 					}
-					
-					
-					
- 					break;
+					break;
 				
 				case "u":
 					//Update
@@ -75,7 +86,7 @@ public class Main {
 				
 				case "d":
 					//Delete
-					System.out.println("Enter the ID of the Identity to be deleted:");
+					System.out.println("Enter the UID of the Identity to be deleted:");
 				//	String uid = scanner.nextLine();
 					//Identity id4;
 					
@@ -88,7 +99,8 @@ public class Main {
 				default: 
 					break;
 				}
-
+				System.out.println("Do you wish to continue ( y/n )?");
+				con = scanner.nextLine();
 			}
 			// Finish
 		}
@@ -104,7 +116,7 @@ private static Identity getIdentityFromInput(Scanner scanner) throws ParseExcept
 	String name = scanner.nextLine();
 	System.out.println("Enter Email ID of Identity:");
 	String email = scanner.nextLine();
-	System.out.println("Enter ID of Identity:");
+	System.out.println("Enter UID of Identity:");
 	String uid = scanner.nextLine();
 	System.out.println("Enter Birth Date of Identity:");
 	String dateString = scanner.nextLine();

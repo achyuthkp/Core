@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- The whole file is called a "Document" --><!-- "identities" is the Root Element --><identities>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- The whole file is called a "Document" --><!-- "identities" is the Root Element --><identities>
 	<!-- identity is an element, "first child" of identities -->
 	<identity>
 		<property name="displayName">Thomas</property>
@@ -26,22 +25,4 @@
 		<property name="guid">987456123</property>
 		<property name="birthDate">19/06/1988</property>
 	</identity>
-<identity>
-    <property name="displayName">Ach</property>
-    <property name="email">dee@ee.com</property>
-    <property name="guid">32947</property>
-    <property name="birthDate">12/01/2010</property>
-  </identity>
-<identity>
-    <property name="displayName">John</property>
-    <property name="email">john@gmail.com</property>
-    <property name="guid">221190</property>
-    <property name="birthDate">22/01/1990</property>
-  </identity>
-<identity>
-    <property name="displayName">hello</property>
-    <property name="email">he@llo.com</property>
-    <property name="guid">311291</property>
-    <property name="birthDate">31/01/1991</property>
-  </identity>
-</identities>
+<identity><property name="displayName">Achyuth</property><property name="email">12312</property><property name="guid">sd@sdf.com</property><property name="birthDate">22/01/1994</property></identity></identities>

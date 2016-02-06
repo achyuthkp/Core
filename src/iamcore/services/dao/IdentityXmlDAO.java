@@ -25,12 +25,12 @@ import org.w3c.dom.NodeList;
 
 import iamcore.datamodel.Identity;
 import iamcore.services.match.Matcher;
-import iamcore.services.match.impl.StartsWithIdentityMatchStrategy;
+import iamcore.services.match.impl.ContainsIdentityMatcher;
 
 public class IdentityXmlDAO implements IdentityDAO 
 {
 
-	Matcher<Identity> matcher = new StartsWithIdentityMatchStrategy();
+	Matcher<Identity> matcher = new ContainsIdentityMatcher();
 
 	Document doc;
 
