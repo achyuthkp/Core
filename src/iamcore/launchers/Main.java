@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import iamcore.datamodel.Identity;
@@ -134,20 +135,32 @@ public class Main {
 					Identity id4 = new Identity();
 					id4.setUid(uid);
 					dao.delete(id4);
-					
 					break;
 					
 				default: 
 					break;
 				}
 				System.out.println("Do you wish to continue ( y/n )?");
-				con = scanner.nextLine();
+				try {
+					con = scanner.nextLine();
+				} catch (NoSuchElementException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			// Finish
 		}
 		System.out.println("End of the program");
 
-		scanner.close();
+		try
+		{
+			scanner.close();
+		}
+		catch(Exception e)
+		{
+			// catch block
+        	e.printStackTrace();
+		}
 	}
 private static Identity getIdentityFromInput(Scanner scanner) throws ParseException
 {

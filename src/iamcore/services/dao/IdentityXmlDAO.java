@@ -289,7 +289,20 @@ public class IdentityXmlDAO implements IdentityDAO
 		 */
 		NodeList nodes = this.doc.getElementsByTagName("identity");
 		int nodesSize = nodes.getLength();
+		
 		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the Name:");
+		String name = scanner.nextLine();
+		identity.setDisplayName(name);
+		System.out.println("Enter the Email:");
+		String email = scanner.nextLine();
+		identity.setEmailAddress(email);
+		System.out.println("Enter the Birth Date");
+		String birthString = scanner.nextLine();
+		DateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+		Date birthdate = formatter.parse(birthString);
+		identity.setBirthDate(birthdate);
+		
 		/**
 		 *  for every found identity
 		 *  test if the found node is really an Element
@@ -387,7 +400,7 @@ public class IdentityXmlDAO implements IdentityDAO
 						case "birthDate":
 							try 
 							{
-								DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+								DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
 								propertyElt.setTextContent(df.format(identity.getBirthDate()));
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -433,6 +446,7 @@ public class IdentityXmlDAO implements IdentityDAO
 				}
 				
 			}
+		System.out.println("The Identity has been updated");
 		scanner.close();
 		}
 	/**
