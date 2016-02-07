@@ -280,6 +280,7 @@ public class IdentityXmlDAO implements IdentityDAO
  * @throws IOException
  * @throws ParseException
  */
+	@SuppressWarnings("resource")
 	@Override
 	public void update(Identity identity) throws IOException, ParseException 
 	{
@@ -447,7 +448,7 @@ public class IdentityXmlDAO implements IdentityDAO
 				
 			}
 		System.out.println("The Identity has been updated");
-		scanner.close();
+		
 		}
 	/**
 	 * Delete method to delete an Identity

@@ -16,7 +16,7 @@ import iamcore.services.dao.IdentityXmlDAO;
 
 public class Main {
 
-	public static void main(String[] args) throws  IOException, ParseException {
+	public static void main(String[] args) throws  IOException, ParseException, NoSuchElementException {
 
 		System.out.println("Welcome to the Identity Management System");
 
