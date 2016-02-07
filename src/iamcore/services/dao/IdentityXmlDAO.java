@@ -190,11 +190,20 @@ public class IdentityXmlDAO implements IdentityDAO
 	public void create(Identity identity)
 	{
 		/**
-		 * 
+		 * root Identity is accessed and the element 'Identity' within is appended 
+		 * using appendChild()
 		 * 
 		 */
 		 Element rootIdentity =(Element)doc.createElement("identity"); 
 		 doc.getDocumentElement().appendChild(rootIdentity);
+		 /**
+		  * 
+		  * Element properties' name are created 
+		  * Element properties' value are set using setValue
+		  * the name is set through the AttributeNode and setTextContent
+		  * Finally appendChild to rootIdnetity
+		  * The same process is done for all properties
+		  */
 		 
 		 Element propertyElm = doc.createElement("property");
 		 Attr Attrbute = doc.createAttribute("name");
@@ -225,6 +234,11 @@ public class IdentityXmlDAO implements IdentityDAO
 		 propertyElm.setTextContent(df.format(identity.getBirthDate()));
 		 rootIdentity.appendChild(propertyElm);
         
+		 /**
+		  * TransformerFactory - new instance is used to store the data from DOM to XML
+		  * StreamResult stores the data to XML path
+		  */
+		 
 		 TransformerFactory transformerFactory = TransformerFactory.newInstance();
          Transformer transformer=null;
          try 
@@ -252,47 +266,50 @@ public class IdentityXmlDAO implements IdentityDAO
 	@Override
 	public void update(Identity identity) throws IOException, ParseException 
 	{
-		// TODO Auto-generated method stub
+		/**
+		 * NodeList is used to read all nodes in the Identity
+		 * getLength method gets the entire length of the nodes 
+		 */
 		NodeList nodes = this.doc.getElementsByTagName("identity");
 		int nodesSize = nodes.getLength();
 		Scanner scanner = new Scanner(System.in);
-		
-		
-		// for every found identity
+		/**
+		 *  for every found identity
+		 *  test if the found node is really an Element
+		 *  in the DOM implementation a Node can represent an Element, an
+		 *  Attribute or a TextContent
+		 *  To be sure that the found node is of type
+		 *  "Element" using the instanceof operator
+		 */
 		Node node = null;
 		boolean flag = false; 
 		for (int i = 0; i < nodesSize; i++) 
 		{
 			node = nodes.item(i);
-			// test if the found node is really an Element
-			// in the DOM implementation a Node can represent an Element, an
-			// Attribute or a TextContent
-			// so we have to be sure that the found node is of type
-			// "Element" using the instanceof operator
+			
 			if (node instanceof Element) 
 			{
-				// cast the node into an Element, as we are sure it is an
-				// instance of Element
+				/**
+				 * cast the node into an Element, as we are sure it is an
+				 * instance of Element
+				 * property tagName is stored into NodeList using getElementsByTagName
+				 */
+				
 				Element id = (Element) node;
-
-				// get the properties for the encountered identity
 				NodeList properties = id.getElementsByTagName("property");
 				int length = properties.getLength();
-
-				// declare and initialize several variables on the same line
-				
-				// for every found property
+				/**
+				 *  The for loop goes through all the properties
+				 *  The inner if condition searches if name is equal to guid
+				 *  If it is true, then flag is stored as true. 
+				 */
 				for (int j = 0; j < length; j++) 
 				{
 					Node item = properties.item(j);
-					// we check that the found property is really an element
-					// (see the explanation above)
+					
 					if (item instanceof Element) 
 					{
 						Element propertyElt = (Element) item;
-						// we need to store the right value in the right
-						// property so we use a switch-case structure
-						// to handle the 3 cases
 						if(propertyElt.getAttribute("name").equals("guid"))
 						{	String TextContent = propertyElt.getTextContent();
 							if(identity.getUid().equals(TextContent))
@@ -313,28 +330,32 @@ public class IdentityXmlDAO implements IdentityDAO
 		}
 		if (flag && node != null) 
 		{
-			// cast the node into an Element, as we are sure it is an
-			// instance of Element
+			/**
+			 *  cast the node into an Element, as we are sure it is an
+			 *  instance of Element
+			 *  get the properties for the encountered identity
+			 *  declare and initialize several variables on the same line
+			 *  for every found property
+			 *  we check that the found property is really an element
+			 */
 			Element id = (Element) node;
-
-			// get the properties for the encountered identity
 			NodeList properties = id.getElementsByTagName("property");
 			int length = properties.getLength();
-			// declare and initialize several variables on the same line
-			
-			// for every found property
+
 				for (int j = 0; j < length; j++) 
 				{
 					Node item = properties.item(j);
-					// we check that the found property is really an element
-					// (see the explanation above)
+					
+					
 					if (item instanceof Element) 
 					{
 						Element propertyElt = (Element) item;
-						// we need to store the right value in the right
-						// property so we use a switch-case structure
-						// to handle the 3 cases
-						
+						 /**
+						  * we need to store the right value in the right
+						  * property so we use a switch-case structure
+						  * to handle the 3 cases
+						  */
+						 
 						switch (propertyElt.getAttribute("name")) 
 						{
 						case "displayName":
@@ -346,7 +367,6 @@ public class IdentityXmlDAO implements IdentityDAO
 						case "email":
 							propertyElt.setTextContent(identity.getEmailAddress());
 							break;
-
 						case "birthDate":
 							try 
 							{
@@ -354,7 +374,7 @@ public class IdentityXmlDAO implements IdentityDAO
 								propertyElt.setTextContent(df.format(identity.getBirthDate()));
 							} catch (Exception e) {
 								e.printStackTrace();
-								//TODO finish exception handling
+								//exception handling
 							}
 							break;
 
@@ -363,8 +383,14 @@ public class IdentityXmlDAO implements IdentityDAO
 							// so we use the "default" case
 							break;
 						}
-							 TransformerFactory transformerFactory = TransformerFactory.newInstance();
-					         Transformer transformer=null;
+
+						 /**
+						  * TransformerFactory - new instance is used to store the data from DOM to XML
+						  * StreamResult stores the data to XML path
+						  */
+						
+						TransformerFactory transformerFactory = TransformerFactory.newInstance();
+					    Transformer transformer=null;
 					         try 
 					         {
 					        	transformer = transformerFactory.newTransformer();
@@ -372,7 +398,7 @@ public class IdentityXmlDAO implements IdentityDAO
 								transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 					         } catch (TransformerConfigurationException e)
 					         {
-					 			// TODO Auto-generated catch block
+					 			// catch block
 					 			e.printStackTrace();
 					 		 }
 							DOMSource source = new DOMSource(doc);
@@ -382,7 +408,7 @@ public class IdentityXmlDAO implements IdentityDAO
 								}
 					        catch (TransformerException e) 
 					        {
-									// TODO Auto-generated catch block
+									// catch block
 					        	e.printStackTrace();
 							}
 					 
@@ -392,7 +418,11 @@ public class IdentityXmlDAO implements IdentityDAO
 			}
 		scanner.close();
 		}
-	
+	/**
+	 * 
+	 * @param identity
+	 * @throws IOException
+	 */
 
 	@Override
 	public void delete(Identity identity) throws IOException 
