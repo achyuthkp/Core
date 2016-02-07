@@ -134,7 +134,7 @@ public class Main {
 					Identity id4 = new Identity();
 					id4.setUid(uid);
 					dao.delete(id4);
-					System.out.println("Identity has been deleted");
+					
 					break;
 					
 				default: 

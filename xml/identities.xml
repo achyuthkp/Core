@@ -22,4 +22,16 @@
     <property name="birthDate">12/01/1989</property>
   </identity>
 
+<identity>
+    <property name="displayName">John</property>
+    <property name="email">john@gmail.com</property>
+    <property name="guid">20022002</property>
+    <property name="birthDate">20/01/2002</property>
+  </identity>
+  <identity>
+    <property name="displayName">Tom</property>
+    <property name="email">tom@gmail.com</property>
+    <property name="guid">120190</property>
+    <property name="birthDate">12/01/1990</property>
+  </identity>
 </identities>

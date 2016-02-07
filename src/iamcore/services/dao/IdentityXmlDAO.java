@@ -514,7 +514,11 @@ public class IdentityXmlDAO implements IdentityDAO
 				if (flag && node != null)
 				{
 					this.doc.getDocumentElement().removeChild(node);
-					
+					System.out.println("Identity has been deleted");
+				}
+				else 
+				{
+					System.out.println("Identity with this ID does not exist and therefore cannot be deleted");
 				}
 				 /**
 				  * TransformerFactory - new instance is used to store the data from DOM to XML
