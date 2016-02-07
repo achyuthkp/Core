@@ -1,36 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- The whole file is called a "Document" --><!-- "identities" is the Root Element -->
-<identities>
+<!-- The whole file is called a "Document" --><!-- "identities" is the Root Element --><identities>
 	<!-- identity is an element, "first child" of identities -->
+	
+	
+<identity>
+    <property name="displayName">Achyuth</property>
+    <property name="email">achyuthkp94@gmail.com</property>
+    <property name="guid">220394</property>
+    <property name="birthDate">22/01/1994</property>
+  </identity>
+  <identity>
+    <property name="displayName">Achu</property>
+    <property name="email">achyuth@gmail.com</property>
+    <property name="guid">200101</property>
+    <property name="birthDate">22/01/1993</property>
+  </identity>
+<identity>
+    <property name="displayName">Armel</property>
+    <property name="email">armel@gmail.com</property>
+    <property name="guid">120189</property>
+    <property name="birthDate">12/01/1989</property>
+  </identity>
 
-
-	<identity>
-		<property name="displayName">Achyuth</property>
-		<property name="email">achyuthkp94@gmail.com</property>
-		<property name="guid">220394</property>
-		<property name="birthDate">22/01/1994</property>
-	</identity>
-	<identity>
-		<property name="displayName">Achu</property>
-		<property name="email">achyuth@gmail.com</property>
-		<property name="guid">200101</property>
-		<property name="birthDate">22/01/1993</property>
-	</identity>
-	<identity>
-		<property name="displayName">Armel</property>
-		<property name="email">armel@gmail.com</property>
-		<property name="guid">120189</property>
-		<property name="birthDate">12/01/1989</property>
-	</identity>
-
-	<identity>
-		<property name="displayName" />
-		John
-	</property>
-		<property name="email" />
-		john@gmail.com
-	</property>
-		<property name="guid">200390</property>
-		<property name="birthDate">20/01/1990</property>
-	</identity>
 </identities>
